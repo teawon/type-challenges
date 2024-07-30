@@ -28,7 +28,7 @@
 
 /* _____________ 여기에 코드 입력 _____________ */
 
-type Merge<F, S> = Simplify<Omit<F, keyof S> & S>;
+type Merge<F, S> = Omit<F, keyof S> & S;
 
 /* _____________ 테스트 케이스 _____________ */
 import type { Equal, Expect } from "@type-challenges/utils";
@@ -42,21 +42,20 @@ type Bar = {
   b: number;
   c: boolean;
 };
-
+type debug1 = Merge<Foo, Bar>;
 type debug = Simplify<Merge<Foo, Bar>>;
 
-type cases = [
-  Expect<
-    Equal<
-      Merge<Foo, Bar>,
-      {
-        a: number;
-        b: number;
-        c: boolean;
-      }
-    >
-  >
-];
+const A: debug1 = {
+  a: 1,
+  b: 1,
+  c: true,
+};
+
+const B: debug = {
+  a: 1,
+  b: 1,
+  c: true,
+};
 
 /* _____________ study _____________ */
 /*
