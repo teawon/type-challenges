@@ -19,7 +19,9 @@
 
 /* _____________ 여기에 코드 입력 _____________ */
 
-type ObjectEntry<T> = 
+type ObjectEntry<T> = {
+  [P in keyof T]: [P, T[P]];
+}[keyof T];
 
 /* _____________ 테스트 케이스 _____________ */
 import type { Equal, Expect } from "@type-challenges/utils";
@@ -49,10 +51,9 @@ type cases = [
 
 /* _____________ 사용 사례 _____________ */
 
-
 const apiKeyEntry: ConfigObjectEntry = ["apiKey", "123123"];
 
 const logPersonEntry = (entry: ObjectEntry<Config>) => {
   const [key, value] = entry;
-  // 객체의 키-값 쌍을 처리
+  // 객체의 키-값 쌍을 처리할 때
 };

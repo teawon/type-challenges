@@ -20,7 +20,7 @@
 
 /* _____________ 여기에 코드 입력 _____________ */
 
-type ValueOf<T> = 
+type ValueOf<T> = T[keyof T];
 /* _____________ 테스트 케이스 _____________ */
 import type { Equal, Expect } from "@type-challenges/utils";
 
@@ -35,6 +35,10 @@ type Config = {
   timeout: number;
   retry: boolean;
 };
+
+import { Simplify } from "../utils";
+
+type debug1 = ValueOf<User>;
 
 type cases = [
   Expect<Equal<ValueOf<User>, number | string>>,
