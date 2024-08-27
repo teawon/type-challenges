@@ -12,7 +12,7 @@ type Entries<T> = {
 }[keyof T][];
 
 /* _____________ 여기에 코드 입력 _____________ */
-const objectEntries = <T extends object>(obj: T) => {
+const objectEntries = <T extends object>(obj: T): Entries<T> => {
   return Object.entries(obj) as Entries<T>;
 };
 
@@ -25,7 +25,7 @@ const user = {
 const entries = Object.entries(user);
 entries.forEach(([key, value]) => {
   if (key === "age") {
-    // value는 string | number로 인식
+    // value : string | number
     // @ts-expect-error
     console.log(value.toFixed(2)); // 여기서 에러 발생
   }
@@ -35,7 +35,7 @@ entries.forEach(([key, value]) => {
 const typedEntries = objectEntries(user);
 typedEntries.forEach(([key, value]) => {
   if (key === "age") {
-    // value는 number로 정확히 인식
+    // value :  number
     console.log(value.toFixed(2)); // 여기서 타입 에러가 나지 않도록 objectEntries작성
   }
 });
